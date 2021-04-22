@@ -1,0 +1,89 @@
+{% load static %}
+<html>
+{% block body %}
+
+    <head>
+    <title>BookDetils</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+<body>
+
+<div class="container">
+    <center>
+        <h2>Details of {{object.book_name}} book</h2>
+    </center>
+</div>
+<div class="container-fluid">
+        <div class="row">
+          <div class="col-12 mb-3">
+          <div class="col-12 mb-3">
+              <div id="content-wrapper">
+        <div class="container-fluid">
+
+            <div class="card mb-3">
+
+                <div class="card-body">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+ <div class="row">
+        <div class="col-12">
+            <ul class="list-group">
+              <li class="list-group-item"><strong>Book Name:</strong> {{ object.book_name }}</li>
+              <li class="list-group-item"><strong>Author :</strong> {{ object.author }}</li>
+              <li class="list-group-item"><strong>Published Year :</strong> {{ object.published_year }}</li>
+              <li class="list-group-item"><strong>Publisher :</strong> {{ object.publisher }}</li>
+              <li class="list-group-item"><strong>Description:</strong> {{ object.book_description }}</li>
+              <li class="list-group-item"><strong>Cover :</strong>
+
+                            print val.split(';')[0]
+
+                                    {% if book.book_img %}
+                                    <img src="https://storebook-bfaf5.appspot.com/images/"+str(object.book_name) alt="{{ book.book_name }}" style="width:100px; height: 100px">
+                                    {% else %}
+                                    <span class="text-muted">No cover</span>
+                                    {% endif %}
+              </li>
+              <li class="list-group-item"><strong>Category of the Book :</strong>   {% if object.book_category == 1 %}
+                <p>Child Friendly</p>
+                {% else %}
+                <p>Adults Only</p>
+                {% endif %}</li>
+              <li class="list-group-item"><strong>Cover:</strong> {{ object.cover_image }}</li>
+              <li class="list-group-item"><strong>Uploaded By :</strong> {{ object.uploaded_by }}</li>
+
+
+            </ul>
+        </div>
+    </div>
+
+
+            <div class="modal-footer">
+                    <a class="btn btn-primary" href="{% url 'manageBook' %}">Manage Books</a>
+                    <a class="btn btn-primary" href="{% url 'home' %}">Home</a>
+                    <a class="btn btn-primary" href="{% url 'admins' %}">Admin Panel</a>
+                    <a href="{% url 'manageBook' %}"><button type="button" class="btn btn-success">Back</button></a>
+                    <a class="btn btn-primary" href="{% url 'home' %}">Home</a>
+                    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+          </div>
+          </div>
+        </div>
+</div>
+</body>
+</html>

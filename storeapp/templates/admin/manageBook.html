@@ -1,0 +1,121 @@
+{% load static %}
+
+{% block body %}
+<html>
+<head>
+    <title>Books</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+
+<!-- Breadcrumbs-->
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+    {{ message }}
+</div>
+{% endfor %}
+<body>
+
+<div class="container">
+    <center>
+        <h2>Book Management</h2>
+    </center>
+</div>
+
+
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Book ID</th>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Published Year</th>
+            <th>About the book</th>
+            <th>Book Category</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        {% if books %}
+        {% for book in books %}
+        <tbody>
+        <tr>
+            <td>{{ book.id }}</td>
+            <td>{{ book.book_name }}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.published_year}}</td>
+            <td>{{book.book_description}}</td>
+            <td> {% if book.book_category == "1" %}
+                <p>Child Friendly</p>
+                {% else %}
+                <p>Adults Only</p>
+                {% endif %}</li></td>
+            <td>
+                <a href="{% url 'viewBook' book.pk %}">
+                    <button class="btn btn-primary" type="button"> View</button>
+                </a></td>
+            <td>
+                <a href="{% url 'editBook' book.pk %}">
+                    <button class="btn btn-warning" type="button"> Edit</button>
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'deleteBook' book.pk %}">
+                    <button class="btn btn-danger" type="button"> Delete</button>
+                </a>
+            </td>
+
+
+        </tr>
+        <!-- end for and if -->
+        {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+
+    <div>
+        {% if is_paginated %}
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in paginator.page_range %}
+            {% if page_obj.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+            {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+        {% endif %}
+    </div>
+
+</div>
+
+<div class="modal-footer">
+    <a class="btn btn-primary" href="{% url 'addBook' %}" style="background-color: green; color: white;">Add a Book</a>
+    <a class="btn btn-primary" href="{% url 'home' %}">Home</a>
+    <a class="btn btn-primary" href="{% url 'admins' %}">Admin Panel</a>
+
+    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+</div>
+</body>
+
+</html>
+{% endblock %}

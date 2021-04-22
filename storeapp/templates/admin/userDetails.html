@@ -1,0 +1,73 @@
+{% load static %}
+
+{% block body %}
+<html>
+    <head>
+    <title>Users</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+<body>
+
+<div class="container">
+    <center>
+        <h2>User Details of {{object.first_name}}</h2>
+    </center>
+</div>
+
+              <div id="content-wrapper">
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-body">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+ <div class="row">
+        <div class="col-12">
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Firstname :</strong> {{ object.first_name }}</li>
+              <li class="list-group-item"><strong>Lastname :</strong> {{ object.last_name }}</li>
+              <li class="list-group-item"><strong>Email :</strong> {{ object.email }}</li>
+              <li class="list-group-item"><strong>Username:</strong> {{ object.username }}</li>
+                <li class="list-group-item"><strong>Telephone :</strong> {{ object.telephone }}</li>
+              <li class="list-group-item"><strong>User Type :</strong> {% if object.user_type == 0 %}
+                                      <p>Admin</p>
+                                    {% elif object.user_type == 1 %}
+                                      <p>Adult User</p>
+                                    {% else %}
+                                    <p>Child User</p>
+                                      {% endif %}</li>
+              <li class="list-group-item"><strong>Joined Date :</strong> {{ object.join_date }}</li>
+               <li class="list-group-item"><strong>Date of birth :</strong> {{ object.dob }}</li>
+              <li class="list-group-item"><strong>Status :</strong> {{ object.is_active }}</li>
+                              <li class="list-group-item"><strong>Adult :</strong> {{ object.is_adult }}</li>
+
+
+
+
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="row top-buffer" style="padding-top: 10px">
+        <div class="col-12">
+                <a href="{% url 'allUsers' %}"><button type="button" class="btn btn-success">Back</button></a>
+        </div>
+    </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<html>
+{% block body %}
+
+    <head>
+    <title>DeleteBook</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+<body>
+
+<div class="container">
+    <center>
+        <h2>Delete the book</h2>
+    </center>
+</div>
+<div class="container-fluid">
+        <div class="row">
+          <div class="col-12 mb-3">
+          <div class="col-12 mb-3">
+              <div id="content-wrapper">
+        <div class="container-fluid">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <label>Book {{ object.book_name }} </label>
+                    <br>
+                    <label>Details Of Book : {{ object.book_description }}</label>
+            </ol>
+            <div class="card mb-3">
+                <div class="card-body">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+    <div class="row">
+        <div class="col-12">
+            <form method="post">
+                {% csrf_token %}
+                <div class="alert alert-warning" role="alert">
+                  Are you sure to delete detail of book {{ object.book_name }} ?
+                </div>
+                <input type="submit" class="btn btn-danger" value="Yes" />
+                <a class="btn btn-success" href="{% url 'manageBook' %}">NO</a>
+            </form>
+        </div>
+    </div>
+
+                  
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

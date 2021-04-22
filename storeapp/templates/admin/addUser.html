@@ -1,0 +1,137 @@
+{% load static %}
+<html>
+{% block body %}
+<head>
+    <title>Users</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <center>
+        <h2>Add New User</h2>
+    </center>
+</div>
+
+<div id="content-wrapper">
+    <form action="{% url 'createUser' %}" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+
+
+        <table cellspacing="0" class="table table-bordered" id="dataTable" width="100%">
+
+
+            <tbody>
+            <tr>
+                <td>First Name</td>
+                <td><input class="form-control" id="inputFirst" name="first_name" placeholder="First Name" required="required"
+                           type="text"></td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td><input class="form-control" id="inputLast" name="last_name" placeholder="Last Name" required=""
+                           type="text">
+                </td>
+                <td></td>
+
+            </tr>
+
+            <tr>
+                <td>Email</td>
+                <td><input class="form-control" id="inputEmail" name="email" placeholder="Email" required="required"
+                           type="tel">
+                </td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td>Telephone</td>
+                <td>
+                    <input class="form-control" id="inputTelephone" name="telephone" placeholder="Telephone" required=""
+                           type="text">
+                </td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td>Date of Birth</td>
+                <td>
+                    <input class="form-control" id="dob" name="dob" placeholder="dob" required="required"
+                           type="date">
+                </td>
+                <td></td>
+
+            </tr>
+
+
+            <tr>
+                <td>User Name</td>
+                <td><input class="form-control" id="inputUsername" name="username" placeholder="Username" required="required"
+                           type="text">
+                </td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td>
+                    <input class="form-control" id="inputPassword" name="password" placeholder="Password"
+                           required="required" type="password">
+                </td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td>User Type</td>
+                <td>
+                    <div class="form-label-group">
+                        <select class="w3-select w3-border" name="user_type">
+                            <option value="3">Choose User Type</option>
+                            <option value="0"> Admin</option>
+                            <option value="1"> Adult Customer</option>
+                            <option value="2"> Child Customer</option>
+
+                        </select>
+                    </div>
+                </td>
+                <td></td>
+
+            </tr>
+
+            </tbody>
+        </table>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" style="background-color: black; color: white;" type="submit">Submit</button>
+            <a class="btn btn-primary" href="{% url 'home' %}">Home</a>
+            <a class="btn btn-primary" href="{% url 'admins' %}">Admin Panel</a>
+
+            <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+
+        </div>
+
+
+        <div class="form-group">
+        </div>
+    </form>
+
+
+</div>
+
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript">
+        $("#id_username").attr("placeholder", "Enter Username");
+        $("#id_password").attr("placeholder", "Enter Password");
+
+</script>
+{% endblock %}
+</body>
+</html>
+

@@ -1,0 +1,151 @@
+{% load static %}
+
+{% block body %}
+<html>
+<head>
+    <title>AddBook</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <center>
+        <h2>Add New Book</h2>
+    </center>
+</div>
+
+<div class="table-responsive">
+    <form action="{% url 'add_book' %}" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+
+
+        <table cellspacing="0" class="table table-bordered" id="dataTable" width="100%">
+
+
+            <tbody>
+            <tr>
+                <td>Book Name</td>
+                <td><input name="book_name" placeholder="Book Name" required="required" type="text"></td>
+
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td><input name="author" placeholder="Author" required="required" type="text"></td>
+
+            </tr>
+            <tr>
+                <td>Publication Year</td>
+                <td><input name="published_year" placeholder="Publication Year" required="required" type="text"></td>
+
+            </tr>
+            <tr>
+                <td>Publisher</td>
+                <td><input name="publisher" placeholder="Publisher" required="required" type="text"></td>
+
+            </tr>
+            <tr>
+                <td>Details of the book</td>
+                <td>
+                    <input name="book_description" placeholder="Description of the book" required="" type="text">
+                </td>
+
+            </tr>
+            <tr>
+                <td>Category of the book</td>
+                <td>
+                    <select class="w3-select w3-border" name="book_category">
+                        <option value="3">Choose Book Type</option>
+                        <option value="0">Regular</option>
+                        <option value="1"> Child Friendly</option>
+                        <option value="2"> Adult</option>
+
+                    </select>
+                </td>
+
+            </tr>
+
+
+            <tr>
+                <td>Book Cover</td>
+                <td><input enctype="multipart/form-data" id="book_img" name="book_img" placeholder="Report Attachment"
+                           type="file">
+                </td>
+
+            </tr>
+
+            </tbody>
+        </table>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" style="background-color: black; color: white;" type="submit">Add Now
+            </button>
+            <a class="btn btn-primary" href="{% url 'home' %}">Home</a>
+            <a class="btn btn-primary" href="{% url 'admins' %}">Admin Panel</a>
+            <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+        </div>
+
+
+        <div class="form-group">
+        </div>
+    </form>
+</div>
+</body>
+<!--
+<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+<script>
+    var config = {
+   "apiKey": "AIzaSyD1zDWPq2eQTFkka411bTJ70713VGSv6DY",
+    "authDomain": "storebook-bfaf5.firebaseapp.com",
+    "projectId": "storebook-bfaf5",
+    "storageBucket": "storebook-bfaf5.appspot.com",
+    "messagingSenderId": "41246072940",
+    "appId": "1:41246072940:web:53c94572ac6d9a9ff43849",
+    "measurementId": "G-EJXBPKLTL3",
+    "databaseURL": ""
+  };
+  firebase.initializeApp(config);
+
+  // Get a reference to the storage service, which is used to create references in your storage bucket
+
+  function uploadimage(){
+  var storage = firebase.storage();
+
+  var file = document.getElementById("files").files[0];
+
+  var storageRef = storage.ref();
+
+  var thisref = storageRef.child(file.name).put(file);
+
+  thisref.on('state_changed',function(snapshot){
+
+  console.log("file uplaoded succesfully");
+
+  },
+  function(error) {
+
+  },
+
+  function() {
+  // Upload completed successfully, now we can get the download URL
+  var downloadURL = thisref.snapshot.downloadURL;
+  console.log("got url");
+  document.getElementById("url").value = downloadURL;
+  alert("file uploaded successfully");
+});
+
+
+
+
+
+
+    }
+
+
+</script>-->
+</html>
+{% endblock %}

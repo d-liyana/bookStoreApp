@@ -1,0 +1,110 @@
+
+
+{% load static %}
+
+{% block body %}
+<html>
+<head>
+    <title>Books</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+
+<!-- Breadcrumbs-->
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+    {{ message }}
+</div>
+{% endfor %}
+<body>
+
+<div class="container">
+    <center>
+        <h2>Shop with Us</h2>
+    </center>
+</div>
+
+                <div class="modal-footer">
+                    <a class="btn btn-primary" href="{% url 'home' %}">Home</a>
+                    <a class="btn btn-primary" href="{% url 'profile' %}">Profile</a>
+                    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+            </div>
+
+<div class="container">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+                                <th>Book Cover</th>
+                                <th>Book Name</th>
+                                <th>Author</th>
+                                <th>Published Year</th>
+                                <th>About the book</th>
+                                <th>Book Category</th>
+                                <th>View</th>
+                                <th>Add to Cart</th>
+      </tr>
+    </thead>
+                <tbody>
+
+                {% if childBooks %}
+                {% for childBooks in childBooks %}
+                <tbody>
+                <tr>
+                    <td>{{ childBooks.id }}</td>
+                    <td>{{ childBooks.book_name }}</td>
+                    <td>{{childBooks.author}}</td>
+                    <td>{{childBooks.published_year}}</td>
+                    <td>{{childBooks.book_description}}</td>
+                    <td>  {% if childBooks.book_category == "1" %}
+                <p>Child Friendly</p>
+                {% else %}
+                <p>Adults Only</p>
+                {% endif %}</li></td>
+                    <td>
+                        <a href="{% url 'viewCusBook' childBooks.pk %}">
+                        <button type="button" class="btn btn-primary"> View</button>
+                    </a></td>
+
+
+
+                </tr>
+            <!-- end for and if -->
+            {% endfor %}
+            {% endif %}
+            </tbody>
+            </table>
+
+<div>
+            {% if is_paginated %}
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+                {% endif %}
+                {% for i in paginator.page_range %}
+                {% if page_obj.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+
+</div>
+
+</body>
+
+</html>
+{% endblock %}

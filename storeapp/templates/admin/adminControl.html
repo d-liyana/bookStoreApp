@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<head>
+    <title>Admin</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+
+<div class="container">
+    <center>
+        <h2>Welcome {{ user.username }}</h2>
+    </center>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                <div class="container">
+                    <form action="{% url 'aSearch' %}"
+                          class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+
+                        <div class="input-group">
+                            <input aria-describedby="basic-addon2" aria-label="Search" class="form-control" name="query"
+                                   placeholder="Search for..." required="required" type="text">
+
+                            <button class="btn btn-primary" style="background-color: grey; color: white;" type="submit">
+                                Search
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </th>
+        </tr>
+        </thead>
+    </table>
+    <table class="table" width="10">
+        <tr>
+            <td>
+                <a class="btn btn-primary" href="{% url 'newBook' %}">Recently Added Book</a>
+            </td>
+            <td>
+                <a class="btn btn-primary" href="{% url 'allUsers' %}">Manage Users</a>
+            </td>
+            <td>
+                <a class="btn btn-primary" href="{% url 'manageBook' %}">Manage Books</a>
+
+            </td>
+            <td></td>
+            <td></td>
+
+            <td></td>
+
+            <td></td>
+
+        </tr>
+    </table>
+
+    <table class="table">
+        <tr>
+            <td width="200">
+                <a class="btn btn-primary" href="{% url 'logout' %}" style="background-color: green; color: white;">Logout</a>
+                <a class="btn btn-primary" href="{% url 'home' %}"
+                   style="background-color: green; color: white;">Home</a>
+            </td>
+
+        </tr>
+    </table>
+    <div class="d-flex justify-content-center">
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+
+            <a class="alert alert-success" style="color:red;"> {{ message }}</a>
+
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    </div>
+
+
+    <!-- Logout Modal-->
+    <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="logoutModal" role="dialog"
+         tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel</button>
+                    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
