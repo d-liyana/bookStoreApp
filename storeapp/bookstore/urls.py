@@ -34,6 +34,7 @@ urlpatterns = [
 
     path('profile/', views.profile, name='profile'),
     path('viewCusBook/<int:pk>', views.ViewCusBook.as_view(), name='viewCusBook'),
+    path('editCusUser/<int:pk>', views.EditCusUser.as_view(), name='editCusUser'),
 
     # Adult Customer URL's
 

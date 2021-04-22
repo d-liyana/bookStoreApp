@@ -1,16 +1,30 @@
+<html>
+<head>
+    <title>Books</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <div class="container bootdey flex-grow-1 container-p-y">
 
             <div class="media align-items-center py-3 mb-3">
-              <img src="https://console.firebase.google.com/u/0/project/storebook-bfaf5/storage/storebook-bfaf5.appspot.com/files/images/Angry dragon_angryDragon.jpg" alt="" class="d-block ui-w-100 rounded-circle">
+              <img width="250" height="250" src="https://firebasestorage.googleapis.com/v0/b/storebook-bfaf5.appspot.com/o/images%2FprofilePic_3.jpg?alt=media&token=7b04b053-efc3-4df0-9de5-facb3a3ec517" alt="" class="d-block ui-w-100 rounded-circle">
               <div class="media-body ml-4">
-                <h4 class="font-weight-bold mb-0">John Doe <span class="text-muted font-weight-normal">@johndoe</span></h4>
                 <div class="text-muted mb-2"></div>
-                <a href="javascript:void(0)" class="btn btn-primary btn-sm">Edit</a>&nbsp;
-                <a href="javascript:void(0)" class="btn btn-default btn-sm">Profile</a>&nbsp;
-                <a href="javascript:void(0)" class="btn btn-default btn-sm icon-btn"><i class="fa fa-mail"></i></a>
               </div>
             </div>
+
+  <div class="modal-footer">
+    <a class="btn btn-primary" href="{% url 'home' %}">Home</a>
+    <a class="btn btn-primary" href="{% url 'profile' %}">Profile</a>
+    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'editCusUser' user.pk %}"><button type="button" class="btn btn-warning"> Edit</button></a>
+
+</div>
 
             <div class="card mb-4">
               <div class="card-body">
@@ -18,78 +32,39 @@
                   <tbody>
                     <tr>
                       <td>Registered:</td>
-                      <td></td>
+                      <td>{{ user.join_date }}</td>
                     </tr>
                     <tr>
-                      <td>Latest activity:</td>
-                      <td></td>
+                      <td>Latest active:</td>
+                      <td>{{ user.last_login }}</td>
                     </tr>
                     <tr>
                       <td>Active Status:</td>
-                      <td></td>
+                      <td>{{ user.is_active }}</td>
                     </tr>
                     <tr>
                       <td>User Type</td>
-                    </tr>
-                    <tr>
-                      <td>Status:</td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <hr class="border-light m-0">
-              <div class="table-responsive">
-                <table class="table card-table m-0">
-                  <tbody>
-                    <tr>
-                      <th>Permission</th>
-                      <th>Read</th>
-                      <th>Write</th>
-                      <th>Create</th>
-                      <th>Delete</th>
-                    </tr>
-                    <tr>
-                      <td><span class="fa fa-check text-primary"></span></td>
-                      <td><span class="fa fa-times text-light"></span></td>
-                      <td><span class="fa fa-times text-light"></span></td>
-                      <td><span class="fa fa-times text-light"></span></td>
-                    </tr>
+                      <td>{{ user.user_type }}</td>
 
-                  </tbody>
-                </table>
-
-
-                <table class="table user-view-table m-0">
-                  <tbody>
+                    </tr>
                     <tr>
                       <td>Username:</td>
-                      <td></td>
-                    </tr>
+                      <td>{{ user.username }}</td>
                     <tr>
                       <td>Name:</td>
-                      <td></td>
+                      <td>{{ user.first_name }}</td>
                     </tr>
                     <tr>
                       <td>E-mail:</td>
-                      <td></td>
+                      <td>{{ user.email }}</td>
                     </tr>
-                    <tr>
-                      <td>Company:</td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
-
-                <table class="table user-view-table m-0">
-                  <tbody>
                     <tr>
                       <td>Birthday:</td>
-                      <td></td>
+                      <td>{{ user.dob }}</td>
                     </tr>
                     <tr>
                       <td>Phone:</td>
-                      <td></td>
+                      <td>{{ user.telephone }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -97,3 +72,4 @@
             </div>
 
           </div>
+</html>

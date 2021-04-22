@@ -15,7 +15,7 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views import generic
 from django.views.generic import CreateView, DetailView, DeleteView, UpdateView, ListView
-from firebase_admin import storage
+from google.cloud import firestore
 
 from . import models
 from .forms import BookForm, UserForm
@@ -35,6 +35,8 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
+
+
 
 
 # Shared Views
@@ -350,6 +352,14 @@ def profile(request):
 class ViewCusBook(LoginRequiredMixin, DetailView):
     model = Book
     template_name = 'customer/bookDetails.html'
+
+
+class EditCusUser(SuccessMessageMixin, UpdateView):
+    model = User
+    form_class = UserForm
+    template_name = 'customer/editProfile.html'
+    success_url = reverse_lazy('allUsers')
+    success_message = "Data successfully updated"
 
 
 # ADULT CUSTOMER
