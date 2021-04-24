@@ -65,6 +65,10 @@ If not installed above
  #eg :- Starting development server at http://127.0.0.1:8000/ , so you can copy paste "http://127.0.0.1:8000/" on your browser.
  
  
+ * Images are store in firestore and following is the url for check the images.
+ *      https://console.firebase.google.com/u/0/project/storebook-bfaf5/storage/storebook-bfaf5.appspot.com/files
+ 
+ 
  
  
 
