@@ -12,6 +12,11 @@ from django.urls import reverse
 
 class User(AbstractUser):
     is_active = models.BooleanField(default=True)
+    telephone = models.CharField(max_length=12)
+    user_type = models.IntegerField(default=2)
+    dob = models.DateTimeField(default=date.today())
+    join_date = models.DateTimeField(default=date.today())
+    is_adult = models.BooleanField(default=True)
 
     class Meta:
         swappable = 'AUTH_USER_MODEL'
