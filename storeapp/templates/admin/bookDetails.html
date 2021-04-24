@@ -50,10 +50,10 @@
               <li class="list-group-item"><strong>Published Year :</strong> {{ object.published_year }}</li>
               <li class="list-group-item"><strong>Publisher :</strong> {{ object.publisher }}</li>
               <li class="list-group-item"><strong>Description:</strong> {{ object.book_description }}</li>
-              <li class="list-group-item"><strong>Category of the Book :</strong>   {% if book.book_category == "0" %}
+              <li class="list-group-item"><strong>Category of the Book :</strong>   {% if object.book_category == "0" %}
                                   <p>General</p>
 
-                  {% elif book.book_category == "1" %}
+                  {% elif object.book_category == "1" %}
                 <p>Child Friendly</p>
                 {% else %}
                 <p>Adults Only</p>
