@@ -32,6 +32,7 @@
         <thead>
         <tr>
             <th>Book ID</th>
+            <th>Book Cover</th>
             <th>Book Name</th>
             <th>Author</th>
             <th>Published Year</th>
@@ -50,11 +51,23 @@
         <tbody>
         <tr>
             <td>{{ book.id }}</td>
+            <td>
+
+                {% if book.book_img %}
+                <img +str(object.book_name) alt="{{ book.book_name }}" src="https://storebook-bfaf5.appspot.com/images/"
+                     style="width:100px; height: 100px">
+                {% else %}
+                <span class="text-muted">No cover</span>
+                {% endif %}
+            </td>
+
             <td>{{ book.book_name }}</td>
             <td>{{book.author}}</td>
             <td>{{book.published_year}}</td>
             <td>{{book.book_description}}</td>
-            <td> {% if book.book_category == "1" %}
+            <td> {% if book.book_category == "0" %}
+                <p>General</p>
+                {% elif book.book_category == "1" %}
                 <p>Child Friendly</p>
                 {% else %}
                 <p>Adults Only</p>
