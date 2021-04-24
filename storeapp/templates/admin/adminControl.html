@@ -9,98 +9,136 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet">
+    <link href="https://www.w3schools.com/lib/w3-theme-blue-grey.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 </head>
 
-<body>
+<body class="w3-theme-l5">
+
+            <div class="container">
+                <center>
+                    <h2>Welcome {{ user.username }}</h2>
+                </center>
+            </div>
 
 
-<div class="container">
-    <center>
-        <h2>Welcome {{ user.username }}</h2>
-    </center>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>
-                <div class="container">
-                    <form action="{% url 'aSearch' %}"
-                          class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+    <!-- The Grid -->
+    <div class="w3-row">
+        <!-- Left Column -->
+        <div class="w3-col m3">
 
-                        <div class="input-group">
+
+
+            <!-- Profile -->
+            <div class="w3-card w3-round w3-white">
+                <div class="w3-container">
+                    <h4 class="w3-center">My Profile</h4>
+                    <p class="w3-center">
+                        <img alt="profile" class="w3-circle"
+                                              src="/w3images/avatar3.png" style="height:106px;width:106px"></p>
+                    <hr>
+                    <p><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i> {{ user.username }}</p>
+                    <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> {% if user.user_type == 0 %}
+                                      Admin
+                                    {% elif user.user_type == 1 %}
+                                      Adult User
+                                    {% else %}
+                                    Child User
+                                      {% endif %}</p>
+                    <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> {{ user.dob }}</p>
+                    <p><i  class="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i> {{ user.email }}</p>
+
+                </div>
+            </div>
+            <br>
+
+            <!-- Accordion -->
+            <div class="w3-card w3-round">
+                <div class="w3-white">
+
+                    <button class="w3-button w3-block w3-theme-l1 w3-left-align">
+                        <a href="{% url 'profile' %}">Profile</a>
+                    </button>
+
+                    <button class="w3-button w3-block w3-theme-l1 w3-left-align">
+                        <a href="{% url 'allUsers' %}">Manage Users</a>
+                    </button>
+
+                    <button class="w3-button w3-block w3-theme-l1 w3-left-align">
+                        <a href="{% url 'manageBook' %}">Manage Books</a>
+                    </button>
+
+                    <button class="w3-button w3-block w3-theme-l1 w3-left-align">
+                        <a href="{% url 'newBook' %}">Recently Added Books</a>
+                    </button>
+
+                </div>
+
+
+
+            </div>
+            </div>
+
+            <!-- Middle Column -->
+    <div class="w3-col m7">
+
+                            <form action="{% url 'aSearch' %}"
+                                  class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+
+      <div class="w3-row-padding">
+        <div class="w3-col m12">
+          <div class="w3-card w3-round w3-white">
+            <div class="w3-container w3-padding">
+
                             <input aria-describedby="basic-addon2" aria-label="Search" class="form-control" name="query"
-                                   placeholder="Search for..." required="required" type="text">
-
-                            <button class="btn btn-primary" style="background-color: grey; color: white;" type="submit">
-                                Search
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </th>
-        </tr>
-        </thead>
-    </table>
-    <table class="table" width="10">
-        <tr>
-            <td>
-                <a class="btn btn-primary" href="{% url 'newBook' %}">Recently Added Book</a>
-            </td>
-            <td>
-                <a class="btn btn-primary" href="{% url 'allUsers' %}">Manage Users</a>
-            </td>
-            <td>
-                <a class="btn btn-primary" href="{% url 'manageBook' %}">Manage Books</a>
-
-            </td>
-            <td>    <a class="btn btn-primary" href="{% url 'profile' %}">Profile</a>
-</td>
-            <td></td>
-
-            <td></td>
-
-            <td></td>
-
-        </tr>
-    </table>
-
-    <table class="table">
-        <tr>
-            <td width="200">
-                <a class="btn btn-primary" href="{% url 'logout' %}" style="background-color: green; color: white;">Logout</a>
-                <a class="btn btn-primary" href="{% url 'home' %}"
-                   style="background-color: green; color: white;">Home</a>
-            </td>
-
-        </tr>
-    </table>
-    <div class="d-flex justify-content-center">
-        {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-
-            <a class="alert alert-success" style="color:red;"> {{ message }}</a>
-
-            {% endfor %}
-        </div>
-        {% endif %}
-    </div>
-    </div>
+                                   placeholder="Search for..." type="text">
 
 
-    <!-- Logout Modal-->
-    <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="logoutModal" role="dialog"
-         tabindex="-1">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel</button>
-                    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
-                </div>
+                                    <button class="w3-button w3-theme" style="background-color: grey; color: white;"
+                                            type="submit">
+                                        Search
+                                    </button></div></div></div></div>
+               </form>
+            </div>
             </div>
         </div>
     </div>
-    </div>
+</div>
+<div class="d-flex justify-content-center">
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+
+                    <a class="alert alert-success" style="color:red;"> {{ message }}</a>
+
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <br>
+
+            <footer class="w3-container w3-theme-d3 w3-padding-16">
+                                <table class="table">
+                <tr>
+                    <td width="200">
+                        <a class="btn btn-primary" href="{% url 'logout' %}"
+                           style="background-color: green; color: white;">Logout</a>
+                        <a class="btn btn-primary" href="{% url 'home' %}"
+                           style="background-color: green; color: white;">Home</a>
+                    </td>
+
+                </tr>
+            </table>
+
+</footer>
+
+
+
 </body>
 </html>
