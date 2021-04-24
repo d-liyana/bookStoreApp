@@ -52,7 +52,9 @@ If not installed above
       or I have already created a superuser and following are the username and password
           username :- manez
           passwaord :- manez@123
-* Then run following commands to migrate database changes.
+* Then run following commands to migrate database changes and to install firebase.
+    #pip3 install pyrebase
+    #pip3 install google.cloud
     #python manage.py makemigrations
     #python manage.py migrate
     
