@@ -53,9 +53,8 @@
             <td>{{ book.id }}</td>
             <td>
 
-                {% if book.book_img %}
-                <img +str(object.book_name) alt="{{ book.book_name }}" src="https://storebook-bfaf5.appspot.com/images/"
-                     style="width:100px; height: 100px">
+                {% if book.cover_img %}
+                <img width="50" height="50" src={{book.cover_img}} alt="" class="d-block ui-w-100 rounded-circle">
                 {% else %}
                 <span class="text-muted">No cover</span>
                 {% endif %}

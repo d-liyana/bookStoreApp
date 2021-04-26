@@ -54,7 +54,8 @@
                 {% for childBooks in childBooks %}
                 <tbody>
                 <tr>
-                    <td>{{ childBooks.id }}</td>
+                    <td><img width="50" height="50" src={{childBooks.cover_img}} alt="" class="d-block ui-w-100 rounded-circle">
+</td>
                     <td>{{ childBooks.book_name }}</td>
                     <td>{{childBooks.author}}</td>
                     <td>{{childBooks.published_year}}</td>
