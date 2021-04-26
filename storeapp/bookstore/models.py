@@ -18,7 +18,7 @@ class User(AbstractUser):
     join_date = models.DateTimeField(default=date.today())
     is_adult = models.BooleanField(default=True)
     profile_img = models.TextField(null=True, blank=True)
-    img_url = models.TextField(null=True, blank=True)
+    img_url = models.TextField(default="https://firebasestorage.googleapis.com/v0/b/storebook-bfaf5.appspot.com/o/images%2FprofilePic_2.jpg?alt=media&token=ac63696a-68fa-4e82-8d5a-eb57084f5a6a", null=True, blank=True)
 
     class Meta:
         swappable = 'AUTH_USER_MODEL'
