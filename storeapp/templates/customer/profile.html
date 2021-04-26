@@ -12,14 +12,22 @@
 <div class="container bootdey flex-grow-1 container-p-y">
 
             <div class="media align-items-center py-3 mb-3">
-              <img width="250" height="250" src="https://firebasestorage.googleapis.com/v0/b/storebook-bfaf5.appspot.com/o/images%2FprofilePic_3.jpg?alt=media&token=7b04b053-efc3-4df0-9de5-facb3a3ec517" alt="" class="d-block ui-w-100 rounded-circle">
-              <div class="media-body ml-4">
+                     <img width="250" height="250" src={{user.img_url}} alt="" class="d-block ui-w-100 rounded-circle">
+     <div class="media-body ml-4">
                 <div class="text-muted mb-2"></div>
               </div>
             </div>
 
   <div class="modal-footer">
-    <a class="btn btn-primary" href="{% url 'home' %}">Home</a>
+      {% if user.user_type == 0 %}
+    <a class="btn btn-primary" href="{% url 'admins' %}">Home</a>
+       {% elif user.user_type == 2 %}
+          <a class="btn btn-primary" href="{% url 'customerChild' %}">Home</a>
+
+                                    {% else %}
+    <a class="btn btn-primary" href="{% url 'customer' %}">Home</a>
+                                      {% endif %}
+    <!--<a class="btn btn-primary" href="{% url 'home' %}">Home</a>-->
     <a class="btn btn-primary" href="{% url 'profile' %}">Profile</a>
     <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
     <a href="{% url 'editCusUser' user.pk %}"><button type="button" class="btn btn-warning"> Edit</button></a>
@@ -44,8 +52,15 @@
                     </tr>
                     <tr>
                       <td>User Type</td>
-                      <td>{{ user.user_type }}</td>
-
+                        <td>
+                            {% if user.user_type == 0 %}
+                                      <p>Admin</p>
+                                    {% elif object.user_type == 1 %}
+                                      <p>Adult User</p>
+                                    {% else %}
+                                    <p>Child User</p>
+                                      {% endif %}</li>
+                        </td>
                     </tr>
                     <tr>
                       <td>Username:</td>

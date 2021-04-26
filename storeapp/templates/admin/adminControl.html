@@ -40,8 +40,9 @@
                 <div class="w3-container">
                     <h4 class="w3-center">My Profile</h4>
                     <p class="w3-center">
-                        <img alt="profile" class="w3-circle"
-                                              src="/w3images/avatar3.png" style="height:106px;width:106px"></p>
+                        <img width="250" height="250" src={{object.img_url}} alt="" class="d-block ui-w-100 rounded-circle">
+</p>
+
                     <hr>
                     <p><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i> {{ user.username }}</p>
                     <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> {% if user.user_type == 0 %}
@@ -137,8 +138,6 @@
             </table>
 
 </footer>
-
-
 
 </body>
 </html>

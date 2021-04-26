@@ -37,8 +37,6 @@ firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
 
 
-
-
 # Shared Views
 
 def home(request):
@@ -219,12 +217,12 @@ def add_book(request):
         book_img = request.FILES['book_img']
         print(book_img)
         print(book_category)
-        storage_file_path = "images/" + str(book_name) + "_" + str(book_img)
+        storage_file_path = "images/" + str(book_name)
         storage.child(storage_file_path).put(book_img)
-
+        cover_img = storage.child(storage_file_path).get_url(token='null')
         a = Book(book_name=book_name, author=author, published_year=published_year, publisher=publisher,
                  book_description=book_description, uploaded_by=uploaded_by, user_id=user_id,
-                 book_category=book_category)
+                 book_category=book_category, cover_img=cover_img)
         a.save()
         messages.success(request, 'Book has uploaded successfully')
         return redirect('newBook')
@@ -325,12 +323,19 @@ def createUser(request):
             is_adult = True
         else:
             is_adult = False
+
+        profile_img = request.FILES['profile_img']
+        print(profile_img)
+        storage_file_path = "images/" + str(username)
+        storage.child(storage_file_path).put(profile_img)
+        img_url = storage.child(storage_file_path).get_url(token='null')
+
         if username is exit:
             messages('Username already exits')
         else:
             a = User(first_name=first_name, last_name=last_name, username=username, email=email,
                      password=password, user_type=user_type, telephone=telephone, is_active=True, dob=dob,
-                     is_adult=is_adult)
+                     is_adult=is_adult,img_url=img_url)
         a.save()
         messages.success(request, 'Member was created successfully!')
         return redirect('allUsers')

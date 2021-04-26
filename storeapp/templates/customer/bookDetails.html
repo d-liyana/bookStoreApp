@@ -36,23 +36,25 @@
  <div class="row">
         <div class="col-12">
             <ul class="list-group">
+                              <li class="list-group-item"><strong>Cover :</strong>
+                               <img width="250" height="250" src={{object.cover_img}} alt="" class="d-block ui-w-100 rounded-circle">
+</li>
               <li class="list-group-item"><strong>Book Name:</strong> {{ object.book_name }}</li>
               <li class="list-group-item"><strong>Author :</strong> {{ object.author }}</li>
               <li class="list-group-item"><strong>Published Year :</strong> {{ object.published_year }}</li>
               <li class="list-group-item"><strong>Publisher :</strong> {{ object.publisher }}</li>
               <li class="list-group-item"><strong>Description:</strong> {{ object.book_description }}</li>
-              <li class="list-group-item"><strong>Cover :</strong> {{ object.uploaded_by }}</li>
+
               <li class="list-group-item"><strong>Category of the Book :</strong>
 
+                {% if object.book_category == "0" %}
+                                  General
 
-                  {% if object.book_category == 1 %}
-                <p>Child Friendly</p>
+                  {% elif object.book_category == "1" %}
+                Child Friendly
                 {% else %}
-                <p>Adults Only</p>
+                Adults Only
                 {% endif %}</li>
-              <li class="list-group-item"><strong>Cover:</strong> {{ object.cover_image }}</li>
-              <li class="list-group-item"><strong>Uploaded By :</strong> {{ object.uploaded_by }}</li>
-
 
             </ul>
         </div>

@@ -10,14 +10,12 @@ from .models import User
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ('book_name', 'author', 'published_year', 'publisher', 'uploaded_by', 'book_description',
-                  'book_category', 'book_img')
+        fields = ('book_name', 'author', 'published_year', 'publisher', 'uploaded_by', 'cover_img', 'book_description',
+                  'book_category', 'uploaded_date', 'book_img')
 
 
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password', 'telephone', 'user_type', 'dob',
-                  'is_active')
-
-
+                  'is_active', 'join_date', 'is_adult','profile_img','img_url')

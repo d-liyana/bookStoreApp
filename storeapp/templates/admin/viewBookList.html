@@ -46,9 +46,9 @@
             <td>{{book.author}}</td>
             <td>{{book.published_year}}</td>
 
-            <td> {% if childBooks.book_category == "0" %}
+            <td> {% if book.book_category == "0" %}
                 <p>General</p>
-                {% elif childBooks.book_category == "1" %}
+                {% elif book.book_category == "1" %}
                 <p>Child Friendly</p>
                 {% else %}
                 <p>Adults Only</p>

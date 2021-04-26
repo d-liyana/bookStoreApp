@@ -17,6 +17,8 @@ class User(AbstractUser):
     dob = models.DateTimeField(default=date.today())
     join_date = models.DateTimeField(default=date.today())
     is_adult = models.BooleanField(default=True)
+    profile_img = models.TextField(null=True, blank=True)
+    img_url = models.TextField(null=True, blank=True)
 
     class Meta:
         swappable = 'AUTH_USER_MODEL'
@@ -32,8 +34,9 @@ class Book(models.Model):
     user_id = models.CharField(max_length=100, null=True, blank=True)
     book_category = models.CharField(max_length=200, null=True, blank=True)
     uploaded_date = models.DateTimeField(default=date.today())
-
-    book_img = models.ImageField(upload_to='storeapp/bookImg/', null=True, blank=True)
+    cover_img = models.TextField(null=True, blank=True)
+    #book_img = models.ImageField(upload_to='storeapp/bookImg/', null=True, blank=True)
+    book_img = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.book_name
