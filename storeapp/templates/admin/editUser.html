@@ -38,70 +38,21 @@
                         </div>
                     {% endfor %}
 
-                                 <div class="media align-items-center py-3 mb-3">
-              <img width="250" height="250" src="{{user.img_url}}" alt="" class="d-block ui-w-100 rounded-circle">
-            </tr>
-              <div class="media-body ml-4">
-                <div class="text-muted mb-2"></div>
-              </div>
-            </div>
-
-                                <div class="row">
-                                    <div class="col-12">
-                                        <form method="post">
-                                            {% csrf_token %}
-                                            <div class="form-group">
-                                                {{ field.label_tag }}
-                                            </div>
-                                            <div>
-                                                <table class="table user-view-table m-0">
-                                                    <tbody>
-
-                                                    <tr>
-                                                        <td>Username:</td>
-                                                        <td>{{ form.username }}</td>
-                                                    <tr>
-                                                        <td>Name:</td>
-                                                        <td>{{ form.first_name }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>E-mail:</td>
-                                                        <td>{{ form.email }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Birthday:</td>
-                                                        <td>{{ form.dob }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Phone:</td>
-                                                        <td>{{ form.telephone }}</td>
-                                                    </tr>
-                                                                         <tr>
-                                                        <td>User Type:</td>
-                                                        <td>{{ form.user_type }}
-                                                            <br>
-                                                            <br>0- Admin
-                                                            <br>1- Adult User
-                                                            <br>2- Child User </td>
-
-                                                    </tr>
-                                                                         <tr>
-                                                        <td>Active Status:</td>
-                                                        <td>{{ form.is_active }}</td>
-                                                    </tr>
-
-                                                    </tbody>
-                                                </table>
-
-
-                                            </div>
- <input type="submit" {% if request.path == '/new' %} value="Add" {% else %} value="Update" {% endif %} class="btn btn-success"/>
-                <a href="{% url 'profile' %}"><button type="button" class="btn btn-secondary">Back</button></a>
-
-                                            </a>
-                                        </form>
-                                    </div>
-                                </div>
+    <div class="row">
+        <div class="col-12">
+            <form method="post" >
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <input type="submit" {% if request.path == '/new' %} value="Add" {% else %} value="Update" {% endif %} class="btn btn-success"/>
+                <a href="{% url 'allUsers' %}"><button type="button" class="btn btn-secondary">Back</button></a>
+            </form>
+        </div>
+    </div>
 
 
           </div>

@@ -40,11 +40,11 @@
               <li class="list-group-item"><strong>Username:</strong> {{ object.username }}</li>
                 <li class="list-group-item"><strong>Telephone :</strong> {{ object.telephone }}</li>
               <li class="list-group-item"><strong>User Type :</strong> {% if object.user_type == 0 %}
-                                      <p>Admin</p>
+                                      Admin
                                     {% elif object.user_type == 1 %}
-                                      <p>Adult User</p>
+                                      Adult User
                                     {% else %}
-                                    <p>Child User</p>
+                                    Child User
                                       {% endif %}</li>
               <li class="list-group-item"><strong>Joined Date :</strong> {{ object.join_date }}</li>
                <li class="list-group-item"><strong>Date of birth :</strong> {{ object.dob }}</li>
