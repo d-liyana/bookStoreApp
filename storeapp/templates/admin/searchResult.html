@@ -134,7 +134,13 @@
 
     <div class="row top-buffer" style="padding-top: 10px">
         <div class="col-12">
+                      {% if user.user_type == 0 %}
+    <a class="btn btn-primary" href="{% url 'admins' %}">Back</a>
+
+                                    {% else %}
                 <a href="{% url 'home' %}"><button type="button" class="btn btn-success">Back</button></a>
+                                      {% endif %}
+
         </div>
     </div>
 </div>
