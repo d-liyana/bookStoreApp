@@ -363,7 +363,12 @@ class EditCusUser(SuccessMessageMixin, UpdateView):
     model = User
     form_class = UserForm
     template_name = 'customer/editProfile.html'
-    success_url = reverse_lazy('allUsers')
+
+    if model.user_type == '0':
+        success_url = reverse_lazy('allUsers')
+    else:
+        success_url = reverse_lazy('profile')
+
     success_message = "Data successfully updated"
 
 
@@ -443,7 +448,7 @@ def cusSearch(request):
 
 def customerChild(request):
     user = User.objects.all().count()
-    childBooks = Book.objects.filter(book_category=1)
+    childBooks = Book.objects.filter().exclude(book_category=2)
     context = {'childBooks': childBooks, 'user': user}
     print(childBooks)
     print(Book.book_category)
