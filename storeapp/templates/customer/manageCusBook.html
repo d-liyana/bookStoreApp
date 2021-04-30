@@ -61,8 +61,10 @@
             <td>{{book.book_description}}</td>
             <td> {% if book.book_category == "1" %}
                 <p>Child Friendly</p>
-                {% else %}
+                        {% elif childBooks.book_category == "2"  %}
                 <p>Adults Only</p>
+                {% else %}
+                <p>General</p>
                 {% endif %}</li></td>
             <td>
                 <a href="{% url 'viewBook' book.pk %}">
